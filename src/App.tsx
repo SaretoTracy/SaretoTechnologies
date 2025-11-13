@@ -1,30 +1,25 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-import Resume from "./pages/Resume";
-import Portfolio from "./pages/Portfolio";
-import Testimonials from "./pages/Testimonials";
-import Contact from "./pages/Contact";
+import Clients from "./pages/Clients";
 
-function App() {
+
+export default function App() {
   return (
-    <Router>
-      <div className="flex min-h-screen bg-gray-950 text-gray-100">
+    <div className="flex min-h-screen bg-dark text-white">
+      {/* Sidebar */}
+      <aside className="w-72 fixed left-0 top-0 h-full bg-card border-r border-gray-800">
         <Sidebar />
-        <div className="flex-1 p-6 overflow-y-auto">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<About />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-      </div>
-    </Router>
+      </aside>
+
+      {/* Main Content */}
+      <main className="ml-72 flex-1 p-8 overflow-y-auto">
+        <Navbar />
+        <section id="about" className="mt-8 space-y-12">
+          <About />
+       <Clients />
+        </section>
+      </main>
+    </div>
   );
 }
-
-export default App;

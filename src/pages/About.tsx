@@ -1,101 +1,64 @@
-import { useState } from "react";
+import { Code, Layout, Smartphone, Camera, Briefcase, Palette } from "lucide-react";
 
-const About = () => {
-  const [activeTab, setActiveTab] = useState("skills");
+const services = [
+  {
+    icon: < Palette size={28} className="text-accent" />,
+    title: "Graphic Design",
+    desc: "Creating visually stunning designs that bring your brand identity to life.",
+  },
+  {
+    icon: <Code size={28} className="text-accent" />,
+    title: "Web Development",
+    desc: "Building responsive, high-performance websites tailored to your business needs.",
+  },
+  {
+    icon: <Smartphone size={28} className="text-accent" />,
+    title: "Mobile Apps",
+    desc: "Developing intuitive mobile applications for iOS and Android platforms.",
+  },
+  {
+    icon: <Briefcase size={28} className="text-accent" />,
+    title: "Business Software Development",
+    desc: "Custom software solutions that streamline operations and boost productivity.",
+  },
 
-  const skills = [
-    { name: "HTML", level: "90%" },
-    { name: "CSS", level: "85%" },
-    { name: "JavaScript", level: "80%" },
-    { name: "React", level: "75%" },
-  ];
+];
 
-  const services = [
-    {
-      title: "Web Development",
-      description:
-        "I build responsive, accessible, and performant web applications with modern technologies.",
-    },
-    {
-      title: "UI/UX Design",
-      description:
-        "I focus on creating intuitive and aesthetic interfaces with user-centered design principles.",
-    },
-  ];
-
+export default function About() {
   return (
-    <section className="space-y-10">
+    <section id="about" className="space-y-10">
+      {/* Section Title */}
       <div>
-        <h1 className="text-3xl font-bold mb-4">About Me</h1>
-        <p className="text-gray-400 leading-relaxed max-w-3xl">
-          I'm a passionate front-end developer with experience building modern web
-          applications using React and Tailwind CSS. I love transforming ideas
-          into digital experiences that are beautiful and functional.
+        <h2 className="text-3xl font-semibold mb-2">About us</h2>
+        <div className="w-20 h-[2px] bg-accent mb-6"></div>
+        <p className="text-gray-300 leading-relaxed max-w-3xl">
+        Sareto Technologies delivers comprehensive digital solutions including web development, mobile app development, graphic design, business software, and database management systems. We transform ideas into powerful technology that drives your business forward..
+        </p>
+        <p className="text-gray-300 leading-relaxed max-w-3xl mt-4">
+        We build websites that are functional, user-friendly, and visually compelling. Our team adds a personal touch to every project, ensuring your digital presence is both eye-catching and intuitive. We bring your message and brand identity to life through creative design solutions. Sareto Technologies has delivered exceptional web design for numerous leading brand companies.
         </p>
       </div>
 
-      {/* Tabs */}
+      {/* What I'm Doing */}
       <div>
-        <div className="flex space-x-6 border-b border-gray-700">
-          <button
-            onClick={() => setActiveTab("skills")}
-            className={`pb-2 transition-colors ${
-              activeTab === "skills"
-                ? "text-blue-500 border-b-2 border-blue-500"
-                : "text-gray-400 hover:text-gray-200"
-            }`}
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => setActiveTab("services")}
-            className={`pb-2 transition-colors ${
-              activeTab === "services"
-                ? "text-blue-500 border-b-2 border-blue-500"
-                : "text-gray-400 hover:text-gray-200"
-            }`}
-          >
-            Services
-          </button>
+        <h3 className="text-2xl font-semibold mb-6">What We Doing</h3>
+        <div className="grid sm:grid-cols-2 gap-6">
+          {services.map((service, idx) => (
+            <div
+              key={idx}
+              className="bg-card p-6 rounded-xl border border-gray-800 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-gray-800 rounded-lg">{service.icon}</div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-1">{service.title}</h4>
+                  <p className="text-gray-400 text-sm">{service.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-
-        {/* Skills */}
-        {activeTab === "skills" && (
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            {skills.map((skill) => (
-              <div key={skill.name}>
-                <div className="flex justify-between mb-2">
-                  <span>{skill.name}</span>
-                  <span className="text-gray-400">{skill.level}</span>
-                </div>
-                <div className="w-full bg-gray-800 rounded-full h-2">
-                  <div
-                    className="bg-blue-600 h-2 rounded-full"
-                    style={{ width: skill.level }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Services */}
-        {activeTab === "services" && (
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="p-6 bg-gray-900 rounded-xl border border-gray-800 hover:border-blue-500 transition-all"
-              >
-                <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-400">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );
-};
-
-export default About;
+}
