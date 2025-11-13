@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom transitions & scrollbar styling (optional) */
+html {
+  scroll-behavior: smooth;
+}
