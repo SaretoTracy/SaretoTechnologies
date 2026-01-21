@@ -14,16 +14,15 @@ const ServiceCard = ({ icon: Icon, title, description, delay }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative h-full bg-zinc-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-zinc-800 overflow-hidden">
-        {/* Animated background gradient */}
+      
         <div 
           className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-red-600/5 to-red-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />
-        
-        {/* Floating particles effect */}
+     
         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-400/20 to-red-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
         
         <div className="relative z-10">
-          {/* Icon container with rotation animation */}
+        
           <div className="mb-6 relative">
             <div 
               className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg"
