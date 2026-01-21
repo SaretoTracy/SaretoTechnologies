@@ -1,99 +1,208 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 
-const Contact = () => {
+export default function Contact() {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const contactInfo = [
+    {
+      icon: <Mail className="w-5 h-5" />,
+      label: "Email",
+      value: "saretotechnologies@gmail.com",
+      link: "mailto:saretotechnologies@gmail.com",
+    },
+    {
+      icon: <Phone className="w-5 h-5" />,
+      label: "Phone",
+      value: "+254 715 691 186",
+      link: "tel:+254715691186",
+    },
+    {
+      icon: <Phone className="w-5 h-5" />,
+      label: "Alternative",
+      value: "+254 745 939 721",
+      link: "tel:+254745939721",
+    },
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      label: "Location",
+      value: "Nairobi, Kenya",
+    },
+  ];
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setSuccess("");
 
-    // Replace these IDs with your EmailJS credentials
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const publicKey = "YOUR_PUBLIC_KEY";
+    if (!validateForm()) return;
 
-    emailjs
-      .send(serviceID, templateID, formData, publicKey)
-      .then(
-        () => {
-          setSuccess("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "" });
-          setLoading(false);
+    setFormStatus({ submitting: true, submitted: false, error: false });
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.fullName,
+          from_email: formData.email,
+          message: formData.message,
         },
-        (err) => {
-          setSuccess("Failed to send message. Please try again.");
-          console.error(err);
-          setLoading(false);
-        }
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-  };
+    
 
-  const isFormValid = formData.name && formData.email && formData.message;
+      setFormStatus({ submitting: false, submitted: true, error: false });
+      setFormData({ fullName: "", email: "", message: "" });
+
+      setTimeout(() => {
+        setFormStatus({ submitting: false, submitted: false, error: false });
+      }, 5000);
+    } catch (err) {
+      console.error(err);
+      setFormStatus({ submitting: false, submitted: false, error: true });
+    }
+  };
 
   return (
-    <section className="max-w-2xl mx-auto p-6 space-y-6">
-      <h1 className="text-3xl font-bold text-center">Contact Us</h1>
+    <section className="flex flex-col lg:flex-row gap-8 text-white">
+      {/* CONTACT INFO */}
+      <div className="lg:w-80 bg-zinc-900 p-8 rounded-2xl border border-zinc-800 space-y-6">
+        <h3 className="text-2xl font-bold">Get in Touch</h3>
+        <p className="text-gray-400 text-sm">
+          Feel free to reach out anytime
+        </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-700 rounded-md bg-gray-900 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
+        <div className="space-y-4">
+          {contactInfo.map((info, i) => (
+            <InfoItem key={i} {...info} />
+          ))}
+        </div>
+      </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-700 rounded-md bg-gray-900 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
-          required
-        />
+      {/* FORM */}
+      <div className="flex-1 bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
+        <h2 className="text-3xl font-bold mb-6">
+          Contact <span className="text-red-500">Me</span>
+        </h2>
 
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="5"
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-700 rounded-md bg-gray-900 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
-          required
-        ></textarea>
+        {formStatus.submitted && (
+          <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/50 text-green-500 p-4 rounded-lg mb-6">
+            <CheckCircle className="w-5 h-5" />
+            Message sent successfully!
+          </div>
+        )}
 
-        <button
-          type="submit"
-          disabled={!isFormValid || loading}
-          className={`w-full p-3 rounded-md font-semibold ${
-            isFormValid && !loading
-              ? "bg-blue-600 hover:bg-blue-700"
-              : "bg-gray-700 cursor-not-allowed"
-          } text-white transition`}
-        >
-          {loading ? "Sending..." : "Send Message"}
-        </button>
-      </form>
+        {formStatus.error && (
+          <div className="flex items-center gap-3 bg-red-500/10 border border-red-500/50 text-red-500 p-4 rounded-lg mb-6">
+            <AlertCircle className="w-5 h-5" />
+            Failed to send message. Try again.
+          </div>
+        )}
 
-      {success && <p className="text-center text-green-500">{success}</p>}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <input
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              placeholder="Full Name"
+              className="p-4 rounded-lg bg-black border border-zinc-800 focus:border-red-500 outline-none"
+            />
+            <input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email Address"
+              className="p-4 rounded-lg bg-black border border-zinc-800 focus:border-red-500 outline-none"
+            />
+          </div>
+
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={6}
+            placeholder="Your Message"
+            className="p-4 rounded-lg bg-black border border-zinc-800 focus:border-red-500 outline-none resize-none"
+          />
+
+          <button
+            disabled={formStatus.submitting}
+            className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-black px-8 py-4 rounded-full font-semibold transition disabled:opacity-50"
+          >
+            {formStatus.submitting ? "Sending..." : <>
+              <Send className="w-5 h-5" /> Send Message
+            </>}
+          </button>
+        </form>
+      </div>
     </section>
   );
-};
+}
 
-export default Contact;
+function InfoItem({ icon, label, value, link }) {
+  const content = (
+    <div className="flex items-center gap-3 bg-black p-4 rounded-lg border border-zinc-800 hover:border-red-500 transition">
+      <div className="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center text-red-500">
+        {icon}
+      </div>
+      <div>
+        <p className="text-xs text-gray-500">{label}</p>
+        <p className="text-sm text-gray-300">{value}</p>
+      </div>
+    </div>
+  );
+
+  return link ? <a href={link}>{content}</a> : content;
+}
