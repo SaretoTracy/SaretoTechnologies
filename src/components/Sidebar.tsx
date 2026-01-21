@@ -43,7 +43,8 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col items-center text-center p-8 bg-zinc-900 border-r border-zinc-800 min-h-screen relative overflow-hidden">
+    <div className="flex flex-col items-center text-center p-8 bg-zinc-900 border-r border-zinc-800 h-full relative overflow-hidden">
+
       <style>{`
         @keyframes float {
           0%, 100% {
