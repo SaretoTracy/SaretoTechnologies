@@ -8,6 +8,7 @@ import Clients from "./pages/Clients";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Services from "./pages/Service";
+import Home from "./pages/Home";
 
 export default function App() {
   const location = useLocation();
@@ -48,8 +49,16 @@ export default function App() {
         <div className="mt-8 space-y-12">
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-              <Route
+               <Route
                 path="/"
+                element={
+                  <motion.div {...pageMotion}>
+                   <Home />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/about"
                 element={
                   <motion.div {...pageMotion}>
                     <About />

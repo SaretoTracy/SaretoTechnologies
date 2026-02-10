@@ -121,7 +121,7 @@ export default function Services() {
       `}</style>
       
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
+     
         <div className="text-center mb-16" style={{ animation: 'fadeInUp 0.6s ease-out' }}>
           <div className="inline-block mb-4">
             <span className="text-red-500 font-semibold text-sm tracking-wider uppercase bg-red-500/10 px-4 py-2 rounded-full border border-red-500/20">
@@ -145,7 +145,7 @@ export default function Services() {
           </div>
         </div>
         
-        {/* Services Grid */}
+    
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <ServiceCard
@@ -158,7 +158,7 @@ export default function Services() {
           ))}
         </div>
         
-        {/* Bottom CTA Section */}
+     
         <div 
           className="mt-20 text-center bg-gradient-to-r from-red-500 to-red-600 rounded-3xl p-12 relative overflow-hidden shadow-2xl"
           style={{ animation: 'fadeInUp 0.6s ease-out 1s both' }}

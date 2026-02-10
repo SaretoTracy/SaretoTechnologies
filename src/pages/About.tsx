@@ -81,7 +81,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* Features Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8" style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}>
         {features.map((feature, index) => {
           const Icon = feature.icon;
@@ -92,10 +91,10 @@ export default function About() {
               onMouseEnter={() => setActiveFeature(index)}
               onMouseLeave={() => setActiveFeature(null)}
             >
-              {/* Hover glow effect */}
+            
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              {/* Top accent line */}
+        
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               
               <div className="relative z-10 text-center">
