@@ -20,7 +20,7 @@ export default function App() {
   ];
 
   return (
-    <section className="relative isolate min-h-screen overflow-x-hidden bg-gradient-to-br from-black via-red-950 to-black">
+    <section className="relative h-full  rounded-2xl  pt-17 shadow-lg hover:shadow-2xl transition-all duration-500 border border-zinc-800 overflow-hidden">
       {/* Animated background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div

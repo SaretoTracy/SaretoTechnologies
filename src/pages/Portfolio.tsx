@@ -28,21 +28,29 @@ const projects = [
     title: "Membskin",
     category: "Web Development",
     image: project3,
-    link: "https://www.membaskins.co.ke/",
+    link: "https://membaskins.co.ke/",
   },
   {
     id: 4,
-    title: "Flex",
+    title: "FlexPesa Exchange App",
     category: "Applications",
     image: project4,
     link: "https://app.flexpesaexchange.co.ke/",
   },
   {
     id: 5,
-    title: "SunDown",
+    title: "Sundown Aussie Haul",
     category: "Web Development",
     image: project5,
-    link: "https://expresscareteam.saretotech.co.ke.sundownhaul.com.au/",
+    link: "https://sundownhaul.com.au/",
+
+  },
+   {
+    id: 6,
+    title: "FlexPesa Exchange Website",
+    category: "Web Development",
+    image: project4,
+    link: "https://flexpesaexchange.co.ke/",
   },
 ];
 

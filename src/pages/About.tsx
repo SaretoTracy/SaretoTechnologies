@@ -12,7 +12,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="space-y-10 relative">
+    <section id="about" className="space-y-10 relative ">
       <style>{`
         @keyframes fadeInLeft {
           from {
@@ -60,7 +60,7 @@ export default function About() {
       
       {/* Section Title */}
       <div style={{ animation: 'fadeInLeft 0.6s ease-out' }}>
-        <h2 className="text-4xl font-bold mb-3 text-white">About us</h2>
+        <h2 className="text-4xl font-bold mb-3 text-white ">About us</h2>
         <div className="relative w-20 h-[3px] mb-6 overflow-hidden rounded-full bg-zinc-800">
           <div 
             className="absolute inset-0 bg-gradient-to-r from-red-400 via-red-500 to-red-600"

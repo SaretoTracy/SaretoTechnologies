@@ -77,7 +77,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 rounded-2xl border border-zinc-800">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -120,7 +120,7 @@ export default function Services() {
         }
       `}</style>
       
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto ">
      
         <div className="text-center mb-16" style={{ animation: 'fadeInUp 0.6s ease-out' }}>
           <div className="inline-block mb-4">
