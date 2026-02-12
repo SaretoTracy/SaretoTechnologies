@@ -87,23 +87,7 @@ export default function Clients() {
       </div>
 
 
-      <div 
-        className="mt-12 grid grid-cols-3 gap-6 p-8 bg-zinc-900 rounded-2xl border border-zinc-800"
-        style={{ animation: 'fadeInUp 0.6s ease-out 0.4s both' }}
-      >
-        <div className="text-center">
-          <div className="text-3xl font-bold text-red-500 mb-1">30+</div>
-          <div className="text-sm text-gray-400">Projects Completed</div>
-        </div>
-        <div className="text-center border-x border-zinc-800">
-          <div className="text-3xl font-bold text-red-500 mb-1">20+</div>
-          <div className="text-sm text-gray-400">Happy Clients</div>
-        </div>
-        <div className="text-center">
-          <div className="text-3xl font-bold text-red-500 mb-1">3+</div>
-          <div className="text-sm text-gray-400">Years Experience</div>
-        </div>
-      </div>
+   
     </section>
   );
 }

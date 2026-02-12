@@ -114,7 +114,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="pt-19 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="text-center mb-16 animate-fade-in">
          <div className="inline-block mb-4">

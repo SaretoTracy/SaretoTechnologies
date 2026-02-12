@@ -62,7 +62,7 @@ export default function App() {
                 element={
                   <motion.div {...pageMotion}>
                     <About />
-                    <Clients />
+                  
                   </motion.div>
                 }
               />
